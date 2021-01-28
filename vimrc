@@ -33,6 +33,10 @@ Plug 'vimwiki/vimwiki'
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
 
+" Autocompletion
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'vim-scripts/AutoComplPop'
+
 call plug#end()
 
 " no vi-compatible
