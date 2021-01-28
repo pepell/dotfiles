@@ -1,8 +1,8 @@
 set encoding=utf-8
 
-" Vim-plug se ha de instalar previamente de manera manual
-" se podría hacer de manera automática. Ver por ejemplo:
-" https://github.com/quiqueporta/dotfiles/blob/master/vimrc
+" Install previously Vim-Plug manually.
+" It's possible to do it automatically
+" see https://github.com/quiqueporta/dotfiles/blob/master/vimrc
 
 call plug#begin("~/.vim/plugged")
 
@@ -42,7 +42,7 @@ call plug#end()
 " no vi-compatible
 set nocompatible
 
-" Para evitar algunos problemas de seguridad ¿?
+" Avoid security problems
 set modelines=0
 
 " allow plugins by file type (required for plugins!)
@@ -147,7 +147,6 @@ set scrolloff=5
 if has("gui_running")
     set guioptions-=T
     set guifont=Noto\ Mono\ for\ Powerline\ 11
-    "set guifont=JetBrainsMono\ Nerd\ Font\ Regular\ 11
     set columns=120
     set lines=45
 endif
@@ -182,11 +181,11 @@ nnoremap <F2> <esc>:w<CR>
 inoremap <F2> <esc>:w<CR>
 vnoremap <F2> <esc>:w<CR>
 
-" Movimiento por los diferentes buffers
-" Configuración tomada de http://statico.github.com/vim.html
-" Volver al buffer previamente editado
+" Move to the differents buffers
+" Config from http://statico.github.com/vim.html
+" Come back to the previously edited buffer
 nmap <C-e> :e#<CR>
-" Moverse por todos los buffers abiertos
+" Move through the opened buffers
 nmap <C-Tab> :bnext<CR>
 nmap <C-S-Tab> :bprev<CR>
 
