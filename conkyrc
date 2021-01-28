@@ -1,0 +1,72 @@
+# Utils conky config
+# By Juanjo Salvador (http://juanjosalvador.es)
+
+background no
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_title conky
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 128
+double_buffer yes
+minimum_size 100 100
+maximum_width 300
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_right
+gap_x 20
+gap_y 30
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+# lua_load /home/juanjo/conky/draw_bg.lua
+# lua_draw_hook_pre draw_bg
+ 
+TEXT
+${font Open Sans:bold:pixelsize=90}${alignr}${time %H:%M}${font}
+${font Open Sans:bold:pixelsize=30}${alignr}${time %d.%m.%Y}${font}
+
+${font Open Sans:bold:size=8}${color eee}SISTEMA ${hr 2}${font sans-serif:normal:size=8}
+$nodename $sysname $kernel on $machine
+${alignr}en funcionamiento ${uptime}
+
+${font Open Sans:bold:size=8}${color eee}CPU ${hr 2}${font sans-serif:normal:size=8}
+CPU0: ${cpu cpu0}% ${cpubar cpu0}
+CPU1: ${cpu cpu1}% ${cpubar cpu1}
+CPU2: ${cpu cpu2}% ${cpubar cpu2}
+CPU3: ${cpu cpu3}% ${cpubar cpu3}
+${alignr}Temperatura ${execi 8 sensors | grep 'Core 0' | cut -c17-23 | sed '/^$/d'}
+ 
+${font Open Sans:bold:size=8}${color eee}MEMORY ${hr 2}
+${font sans-serif:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
+$membar
+
+${font Open Sans:bold:size=8}${color eee}DISKs ${hr 2}
+${font sans-serif:normal:size=8}Root $alignc ${fs_used /} / ${fs_size /} $alignr${fs_used_perc /}%
+${fs_bar /}
+Home $alignc ${fs_used /home/pepell} / ${fs_size /home/pepell} $alignr ${fs_used_perc /home/pepell}%
+${fs_bar /home/pepell}
+u2 $alignc ${fs_used /u2} / ${fs_size /u2} $alignr ${fs_used_perc /u2}%
+${fs_bar /u2}
+
+${font Open Sans:bold:size=8}${color eee}NETWORK ${hr 2}
+${if_up enp2s0}${font sans-serif:normal:size=8}enp2s0${alignr}${addr enp2s0}
+Down: ${downspeed enp2s0}${alignr}Up: ${upspeed enp2s0}
+${downspeedgraph enp2s0 30,110 000000 ff0000 -t -l} ${alignr}${upspeedgraph enp2s0 30,110 000000 00ff00 -t -l}
+Total: ${totaldown enp2s0} ${alignr}Total: ${totalup enp2s0}
+Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}${endif} 
+
+${if_up tun0}${alignr}${font sans-serif:normal:size=8} Conectado por tun0 en ${addr tun0}${endif}
+${if_up ppp0}${alignr}${font sans-serif:normal:size=8} Conectado por ppp0 en ${addr ppp0}${endif}
